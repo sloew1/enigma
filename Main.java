@@ -1,33 +1,27 @@
-import java.util.HashMap;
 
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        HashMap<Character, Character> charMap = new HashMap<>();
 
-        // Add mappings to the HashMap
-        charMap.put('A', 'B');
-        charMap.put('L', 'X');
-        charMap.put('P', 'Q');
+        HashMap<Character, Character> exampleHashmap = new HashMap<>();
 
-        Plugboard pb = new Plugboard(charMap);
-        Character letter = pb.getLetter('A');
+        Plugboard p = new Plugboard(exampleHashmap);
+        p.setConnections('A', 'Z');
 
-        // System.out.println(letter);
+        Rotor r = new Rotor();
 
-        Rotor rotor1 = new Rotor();
-        System.out.println(rotor1.getCharacter('A'));
-        System.out.println(rotor1.getCharacter('A'));
-        System.out.println(rotor1.getCharacter('B'));
-        System.out.println(rotor1.getCharacter('C'));
+        //exampleHashmap = r.getScrambledAlphabet();
+
+        System.out.println(r.getScrambledAlphabet());
 
 
 
-        // Iterate using entrySet()
-        //for (Map.Entry<Character, Character> entry : map.entrySet()) {
-        //    Character key = entry.getKey();
-        //    Character value = entry.getValue();
-        //    System.out.println("Key: " + key + ", Value: " + value);
-        //}
     }
-
 }
