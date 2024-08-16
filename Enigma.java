@@ -9,7 +9,7 @@ public class Enigma {
     Rotor r;
     HashMap<Character, Character> connections;
 
-    private static Enigma e;
+    public static Enigma e;
 
 
     private Enigma(int anzahlRotoren, char letter, char letter2){
