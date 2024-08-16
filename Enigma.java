@@ -7,7 +7,7 @@ public class Enigma {
     // private Rotor rotor1;
     // int anzahlRotoren = 0;
     Plugboard p;
-    // Rotor r;
+    Rotor r;
     HashMap<Character, Character> connections;
     public ArrayList<Rotor> rotorList = new ArrayList<>();
     public Rotor reflektor;    
