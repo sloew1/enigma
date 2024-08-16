@@ -1,8 +1,8 @@
 import java.util.*;
 
-
+// Rotoren und Reflektor der Enigma (historisch gab es 3-5 Rotoren und 1 Reflektor)
 public class Rotor {
-
+    
     private HashMap<Character,Character> scrambledAlphabet = new HashMap<>();
     private ArrayList<Character> alphabet = new ArrayList<>();
     private ArrayList<Character> alphab = new ArrayList<>();
