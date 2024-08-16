@@ -23,9 +23,7 @@ public class Main {
 
         Enigma eni = Enigma.createEnigma(2,'A','B');
 
-       Enigma.e.connections;
-
-
-
+        HashMap<Character,Character> example = Enigma.e.connections;
+        System.out.println(example);
     }
 }
