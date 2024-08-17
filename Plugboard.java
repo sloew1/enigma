@@ -23,9 +23,18 @@ public class Plugboard {
         }return alphabet;
     }
 
-    public void setConnections(char letter, char letter2){
-        connections.put(letter, letter2);
+    public void setConnections(){
+        Scanner eingabe = new Scanner(System.in);
+        connections.putAll(getAlphabet());
+        System.out.println("Geben Sie bitte hier die Buchstaben ein (10 Paare), die ersetzt werden sollen:\n Muster --> A-ersetzeDurchBuchtsabeX\nB(oder anderer Buchstabe)-ersetzeDurchBuchtsabeY usw.");
+        String[] buchstaben = new String[]{eingabe.next()};
+        char[] buchstabenListe = String.join("", buchstaben).toCharArray();
+        for(int i = 1; i < buchstabenListe.length; i++){
+        connections.replace(buchstabenListe[i-1], buchstabenListe[i]);
+        eingabe.close();
     }
+    }
+
 
     private void swap(char letter){
         char letter2= connections.get(letter);
