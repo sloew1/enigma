@@ -22,12 +22,6 @@ public class Main {
         Enigma eni = Enigma.createEnigma(2,'A','B');
         HashMap<Character, Character> startMapping = eni.getStartMappings();
 
-<<<<<<< Updated upstream
-       Enigma.e.connections;
-
-
-
-=======
         HashMap<Character,Character> example = Enigma.e.connections;
         System.out.println(example);
 
@@ -52,6 +46,5 @@ public class Main {
         }
 
         System.out.println(output);
->>>>>>> Stashed changes
     }
 }
