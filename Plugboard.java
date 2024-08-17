@@ -1,6 +1,7 @@
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Plugboard {
 
@@ -13,10 +14,12 @@ public class Plugboard {
     }
 
 
-    public static char[] getAlphabet() {
-        char[] alphabet = new char[26];
+    public static HashMap<Character, Character> getAlphabet() {
+        HashMap<Character, Character> alphabet = new HashMap<>();
         for(int i = 0; i < 26; i++){
-            for(char e : alphabet) alphabet[i] = (char) ('A' + i);
+            char c = (char) ('A' + i);
+                alphabet.put(c,c);
+
         }return alphabet;
     }
 
@@ -28,6 +31,9 @@ public class Plugboard {
         char letter2= connections.get(letter);
         connections.put(letter2, letter);
     }
+
+
+
 
 
     public Character getLetter(char KeyLetter){
