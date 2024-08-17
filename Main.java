@@ -23,7 +23,7 @@ public class Main {
 */
         Enigma eni = Enigma.createEnigma(2,'A','B');
 
-        Enigma.e.p.setConnections('C', 'D');
+        Enigma.e.p.setConnections();
         System.out.println(Enigma.e.connections);
     }
 }

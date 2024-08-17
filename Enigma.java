@@ -12,12 +12,12 @@ public class Enigma {
     public static Enigma e;
 
 
-    private Enigma(int anzahlRotoren, char letter, char letter2){
+    private Enigma(int anzahlRotoren){
         this.anzahlRotoren =anzahlRotoren;
         try {
             this.connections = new HashMap<>();
             this.p = new Plugboard(connections);
-            p.setConnections(letter, letter2);
+            p.setConnections();
             if (anzahlRotoren == 1) this.rotor1 = new Rotor();
             if (anzahlRotoren == 2) {
                 this.rotor1 = new Rotor();
@@ -35,7 +35,7 @@ public class Enigma {
 
     public static Enigma createEnigma(int anzahlRotoren, char letter1, char letter2){
         if(e == null) {
-            e = new Enigma(anzahlRotoren, letter1, letter2);
+            e = new Enigma(anzahlRotoren);
         }
         return e;
     }
