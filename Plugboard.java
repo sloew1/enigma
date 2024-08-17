@@ -25,9 +25,9 @@ public class Plugboard {
 
     public void setConnections(){
         Scanner eingabe = new Scanner(System.in);
-        connections.putAll(getAlphabet());
+        connections.putAll(getAlphabet()); //in der folgenden Zeile evtl mit while schleife arbeiten
         System.out.println("Geben Sie bitte hier die Buchstaben ein (10 Paare), die ersetzt werden sollen:\n Muster --> A-ersetzeDurchBuchtsabeX\nB(oder anderer Buchstabe)-ersetzeDurchBuchtsabeY usw.");
-        String[] buchstaben = new String[]{eingabe.next()};
+        String[] buchstaben = new String[]{eingabe.next()}; //ArrayList statt Array, in diser form: arraylänge = 1
         char[] buchstabenListe = String.join("", buchstaben).toCharArray();
         for(int i = 1; i < buchstabenListe.length; i++){
         connections.replace(buchstabenListe[i-1], buchstabenListe[i]);
