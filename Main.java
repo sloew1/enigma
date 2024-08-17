@@ -9,7 +9,7 @@ import java.util.Map;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-
+/*
         HashMap<Character, Character> exampleHashmap = new HashMap<>();
 
         Plugboard p = new Plugboard(exampleHashmap);
@@ -20,10 +20,10 @@ public class Main {
         //exampleHashmap = r.getScrambledAlphabet();
 
         System.out.println(r.getScrambledAlphabet());
-
+*/
         Enigma eni = Enigma.createEnigma(2,'A','B');
 
-        HashMap<Character,Character> example = Enigma.e.connections;
-        System.out.println(example);
+        Enigma.e.p.setConnections('C', 'D');
+        System.out.println(Enigma.e.connections);
     }
 }

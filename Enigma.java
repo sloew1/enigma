@@ -29,7 +29,7 @@ public class Enigma {
                 this.rotor3 = new Rotor();
             }
         }catch (Exception e){
-            throw new IllegalArgumentException("Falscher EIngabewert angegeben");
+            throw new IllegalArgumentException("Falscher EIngabewert angegeben"+ e);
         }
     }
 
