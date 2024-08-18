@@ -1,7 +1,4 @@
-import java.util.Set;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Plugboard {
 
@@ -26,11 +23,20 @@ public class Plugboard {
     public void setConnections(){
         Scanner eingabe = new Scanner(System.in);
         connections.putAll(getAlphabet()); //in der folgenden Zeile evtl mit while schleife arbeiten
-        System.out.println("Geben Sie bitte hier die Buchstaben ein (10 Paare), die ersetzt werden sollen:\n Muster --> A-ersetzeDurchBuchtsabeX\nB(oder anderer Buchstabe)-ersetzeDurchBuchtsabeY usw.");
-        String[] buchstaben = new String[]{eingabe.next()}; //ArrayList statt Array, in diser form: arraylänge = 1
-        char[] buchstabenListe = String.join("", buchstaben).toCharArray();
-        for(int i = 1; i < buchstabenListe.length; i++){
-        connections.replace(buchstabenListe[i-1], buchstabenListe[i]);
+        ArrayList<Character> buchstaben = new ArrayList<>(); //ArrayList statt Array, in diser form: arraylänge = 1
+        boolean b = true;
+        while(b){
+        System.out.println("Geben Sie bitte hier die Buchstabenpaare ein (zusammengeschrieben), die verknüpft werden sollen:\n Muster --> A-ersetzeDurchBuchtsabeX\nB(oder anderer Buchstabe)-ersetzeDurchBuchtsabeY usw.");
+        String buchstabeString = eingabe.next();
+        for(int i = 1; i < buchstabeString.length(); i++){
+            buchstaben.add(buchstabeString.charAt(0));
+            buchstaben.add(buchstabeString.charAt(i));
+            if (buchstaben.size() >= 52) {
+                b = false;
+            }
+            connections.replace(buchstaben.get(i-1), buchstaben.get(i));
+
+        }b = false;
         eingabe.close();
     }
     }
