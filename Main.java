@@ -21,7 +21,7 @@ public class Main {
 
         System.out.println(r.getScrambledAlphabet());
 */
-        Enigma eni = Enigma.createEnigma(2,'A','B');
+        Enigma eni = Enigma.createEnigma(2);
 
         Enigma.e.p.setConnections();
         System.out.println(Enigma.e.connections);

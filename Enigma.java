@@ -6,7 +6,7 @@ public class Enigma {
     private Rotor rotor1;
     int anzahlRotoren = 0;
     Plugboard p;
-    Rotor r;
+    //Rotor r;
     HashMap<Character, Character> connections;
 
     public static Enigma e;
@@ -33,7 +33,7 @@ public class Enigma {
         }
     }
 
-    public static Enigma createEnigma(int anzahlRotoren, char letter1, char letter2){
+    public static Enigma createEnigma(int anzahlRotoren){
         if(e == null) {
             e = new Enigma(anzahlRotoren);
         }

@@ -20,25 +20,29 @@ public class Plugboard {
         }return alphabet;
     }
 
+
+    //Zeile 32 löst Exception aus: No such element
     public void setConnections(){
         Scanner eingabe = new Scanner(System.in);
         connections.putAll(getAlphabet()); //in der folgenden Zeile evtl mit while schleife arbeiten
-        ArrayList<Character> buchstaben = new ArrayList<>(); //ArrayList statt Array, in diser form: arraylänge = 1
-        boolean b = true;
-        while(b){
+        ArrayList<Character> buchstaben = new ArrayList<>();
+        //boolean b = true;
+        //while(b){
         System.out.println("Geben Sie bitte hier die Buchstabenpaare ein (zusammengeschrieben), die verknüpft werden sollen:\n Muster --> A-ersetzeDurchBuchtsabeX\nB(oder anderer Buchstabe)-ersetzeDurchBuchtsabeY usw.");
-        String buchstabeString = eingabe.next();
+        String buchstabeString = eingabe.next().toUpperCase();
+        buchstaben.add(buchstabeString.charAt(0));
         for(int i = 1; i < buchstabeString.length(); i++){
-            buchstaben.add(buchstabeString.charAt(0));
             buchstaben.add(buchstabeString.charAt(i));
-            if (buchstaben.size() >= 52) {
-                b = false;
-            }
             connections.replace(buchstaben.get(i-1), buchstaben.get(i));
+           // if (buchstaben.size() >= 52) {
+           //    break;
+           // }
 
-        }b = false;
+
+        //}b = false;
         eingabe.close();
     }
+
     }
 
 
