@@ -10,7 +10,7 @@ public class Rotor {
     // Mapping, das am Anfang festgelegt wurde, bevor es durch Drehungen geändert wurde. Muss zur Entschlüsselung ausgetauscht werden:
     private HashMap<Character, Character> startMapping = new HashMap<>(); 
     private boolean turnRotor;
-
+   
 
     public Rotor(boolean turnRotor){
         this.alphabet = Rotor.getAlphabet(alphabet);
