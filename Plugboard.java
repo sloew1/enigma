@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Plugboard {
 
@@ -11,48 +13,21 @@ public class Plugboard {
     }
 
 
-    public static HashMap<Character, Character> getAlphabet() {
-        HashMap<Character, Character> alphabet = new HashMap<>();
+    public static char[] getAlphabet() {
+        char[] alphabet = new char[26];
         for(int i = 0; i < 26; i++){
-            char c = (char) ('A' + i);
-                alphabet.put(c,c);
-
+            for(char e : alphabet) alphabet[i] = (char) ('A' + i);
         }return alphabet;
     }
 
-
-    //Zeile 32 löst Exception aus: No such element
-    public void setConnections(){
-        Scanner eingabe = new Scanner(System.in);
-        connections.putAll(getAlphabet()); //in der folgenden Zeile evtl mit while schleife arbeiten
-        ArrayList<Character> buchstaben = new ArrayList<>();
-        //boolean b = true;
-        //while(b){
-        System.out.println("Geben Sie bitte hier die Buchstabenpaare ein (zusammengeschrieben), die verknüpft werden sollen:\n Muster --> A-ersetzeDurchBuchtsabeX\nB(oder anderer Buchstabe)-ersetzeDurchBuchtsabeY usw.");
-        String buchstabeString = eingabe.next().toUpperCase();
-        buchstaben.add(buchstabeString.charAt(0));
-        for(int i = 1; i < buchstabeString.length(); i++){
-            buchstaben.add(buchstabeString.charAt(i));
-            connections.replace(buchstaben.get(i-1), buchstaben.get(i));
-           // if (buchstaben.size() >= 52) {
-           //    break;
-           // }
-
-
-        //}b = false;
-        eingabe.close();
+    public void setConnections(char letter, char letter2){
+        connections.put(letter, letter2);
     }
-
-    }
-
 
     private void swap(char letter){
         char letter2= connections.get(letter);
         connections.put(letter2, letter);
     }
-
-
-
 
 
     public Character getLetter(char KeyLetter){
