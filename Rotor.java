@@ -3,16 +3,18 @@ import java.util.*;
 // Rotoren und Reflektor der Enigma (historisch gab es 3-5 Rotoren und 1 Reflektor)
 public class Rotor {
     
-    private HashMap<Character,Character> scrambledAlphabet = new HashMap<>();
+    public HashMap<Character,Character> scrambledAlphabet = new HashMap<>();
     private ArrayList<Character> alphabet = new ArrayList<>();
     private ArrayList<Character> alphab = new ArrayList<>();
 
     // Mapping, das am Anfang festgelegt wurde, bevor es durch Drehungen geändert wurde. Muss zur Entschlüsselung ausgetauscht werden:
-    private HashMap<Character, Character> startMapping = new HashMap<>(); 
-    private boolean turnRotor;
+    public HashMap<Character, Character> startMapping = new HashMap<>();     
+
+    public boolean isReflektor;
+    public boolean turnRotor;
    
 
-    public Rotor(boolean turnRotor){
+    public Rotor(boolean turnRotor, boolean isReflektor){
         this.alphabet = Rotor.getAlphabet(alphabet);
         //System.out.println("Alphabet: " + alphabet);
         for(int i = 0; i < 26; i++)  alphab.add(alphabet.get(i));
@@ -22,6 +24,7 @@ public class Rotor {
         //System.out.println("Scrambled Alphabet Map: " + scrambledAlphabet);
         this.startMapping = this.scrambledAlphabet;
         this.turnRotor = turnRotor;
+        this.isReflektor = isReflektor;
     }
 
     public HashMap<Character, Character> getScrambledAlphabet() {
@@ -44,13 +47,14 @@ public class Rotor {
     }
 
     public Character encryptCharacter(Character letter){
-        turnRotor();
+        if(!this.isReflektor) turnRotor();
+        
         Character mappedLetter = this.scrambledAlphabet.get(letter);
         return mappedLetter;
     }
 
     public Character decryptCharacter(Character letter){
-        turnRotor();
+        if(!this.isReflektor) turnRotor();
 
         Character mappedLetter = ' ';
         for (Map.Entry<Character, Character> entry : this.scrambledAlphabet.entrySet()) {
@@ -104,14 +108,12 @@ public class Rotor {
     //deep copy
     public HashMap<Character, Object> getMappedAlphabet(){
         HashMap<Character, Object> scrambledAlphabetCopy = new HashMap<>();
-        for(int u = 0; u < 26; u++){
-            Character x = (char) ('A' + u);
-            scrambledAlphabetCopy.put(x, this.getScrambledAlphabet().get(x));
-        }
+       
         for(int i = 0; i < scrambledAlphabetCopy.size(); i++){
             Character x = (char) ('A' + i);
             scrambledAlphabetCopy.put(x, this.scrambledAlphabet.get(x));
-        }return scrambledAlphabetCopy;
+        }
+        return scrambledAlphabetCopy;
     }
 
 
