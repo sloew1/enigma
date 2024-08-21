@@ -1,24 +1,25 @@
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+        Enigma eni = Enigma.createEnigma(2);
+        
+        ArrayList<HashMap<Character, Character>> startMappings = new ArrayList<>();
+        startMappings = eni.getStartMappings();      
+        System.out.println("startMapping: ");
 
-        // HashMap<Character, Character> exampleHashmap = new HashMap<>();
-
-        // Plugboard p = new Plugboard(exampleHashmap);
-        // p.setConnections('A', 'Z');
-
-        // Rotor r = new Rotor(true);
-
-        //exampleHashmap = r.getScrambledAlphabet();
-
-        // System.out.println(r.getScrambledAlphabet());
-
-        Enigma eni = Enigma.createEnigma(2,'A','B');
-        // HashMap<Character, Character> startMapping = eni.getStartMappings();
-
-        // HashMap<Character,Character> example = Enigma.e.connections;
-        // System.out.println(example);
+        int i = 0;
+        for (HashMap<Character, Character> startMapping : startMappings) {
+            i++;
+            System.out.println("Rotor "+i+": ");
+            for (Map.Entry<Character, Character> entry : startMapping.entrySet()) {
+                System.out.println(entry.getKey()+" -> "+entry.getValue());
+            }
+        }
 
         String input = "HELLOWORLD";
         String output = "";
@@ -28,18 +29,22 @@ public class Main {
             Character c = eni.encryptCharacter(character);
             output += c;
         }
-
         System.out.println(output);
+
+        // Rotoren auf Anfang zurückstellen:
+        eni.setStartMappings(startMappings);
 
         // Entschlüsseln:
-        input = output;
-        output = "";
+        String input2 = output;
+        String output2 = "";
+        
 
-        for (char character : input.toCharArray()) {
+        for (char character : input2.toCharArray()) {
             Character c = eni.decryptCharacter(character);
-            output += c;
+            output2 += c;
         }
 
-        System.out.println(output);
+        System.out.println(output2);
+
     }
 }
