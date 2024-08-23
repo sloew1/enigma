@@ -22,7 +22,7 @@ public class Rotor {
         //System.out.println("Shuffled Alphabet (alphab): " + alphab);
         this.scrambledAlphabet = mappingAlphabet(this.alphab);
         //System.out.println("Scrambled Alphabet Map: " + scrambledAlphabet);
-        this.startMapping = this.scrambledAlphabet;
+        this.startMapping = this.getMappedAlphabet(scrambledAlphabet); //deepcopy notwendig
         this.turnRotor = turnRotor;
         this.isReflektor = isReflektor;
     }
@@ -151,12 +151,12 @@ public class Rotor {
     } 
 
     //deep copy
-    public HashMap<Character, Object> getMappedAlphabet(){
-        HashMap<Character, Object> scrambledAlphabetCopy = new HashMap<>();
+    public HashMap<Character, Character> getMappedAlphabet(HashMap<Character, Character> scrambledAlphabet){
+        HashMap<Character, Character> scrambledAlphabetCopy = new HashMap<>();
        
-        for(int i = 0; i < scrambledAlphabetCopy.size(); i++){
+        for(int i = 0; i < scrambledAlphabet.size(); i++){
             Character x = (char) ('A' + i);
-            scrambledAlphabetCopy.put(x, this.scrambledAlphabet.get(x));
+            scrambledAlphabetCopy.put(x, scrambledAlphabet.get(x));
         }
         return scrambledAlphabetCopy;
     }
