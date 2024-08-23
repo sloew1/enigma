@@ -67,6 +67,9 @@ public class Rotor {
         return mappedLetter;
     }
 
+
+
+/*
     public void turnRotor() {        
         // Speichere den Wert des ersten Keys
         Character firstKey = scrambledAlphabet.keySet().iterator().next();
@@ -88,6 +91,48 @@ public class Rotor {
         // Setze den Wert des letzten Keys auf den ursprünglichen ersten Wert
         scrambledAlphabet.put(currentKey, firstValue);
     }
+
+
+    //chatgptvol1
+    public void turnRotor() {
+        // Speichere den Wert des ersten Keys
+        Character firstKey = scrambledAlphabet.keySet().iterator().next();
+        Character firstValue = scrambledAlphabet.get(firstKey);
+
+        Character previousValue = firstValue;
+
+        // Iteriere durch die Map und verschiebe die Werte
+        Character currentKey = null;
+        for (Map.Entry<Character, Character> entry : scrambledAlphabet.entrySet()) {
+            if (currentKey != null) {
+                Character currentValue = entry.getValue();
+                scrambledAlphabet.put(currentKey, currentValue);
+                previousValue = currentValue;
+            }
+            currentKey = entry.getKey();
+        }
+
+        // Setze den Wert des letzten Keys auf den ursprünglichen ersten Wert
+        scrambledAlphabet.put(currentKey, firstValue);
+    }*/
+
+
+    public void turnRotor() {
+        // Speichere die Schlüssel in einer Liste, um die Reihenfolge beizubehalten
+        List<Character> keys = new ArrayList<>(scrambledAlphabet.keySet());
+        // Speichere die Werte in einer Liste in der gleichen Reihenfolge wie die Schlüssel
+        List<Character> values = new ArrayList<>(scrambledAlphabet.values());
+
+        // Verschiebe die Werte eine Position nach vorne
+        Character lastValue = values.remove(values.size() - 1); // Entferne den letzten Wert
+        values.add(0, lastValue); // Füge ihn an den Anfang der Liste
+
+        // Aktualisiere die Map mit den neuen Werten
+        for (int i = 0; i < keys.size(); i++) {
+            scrambledAlphabet.put(keys.get(i), values.get(i));
+        }
+    }
+
 
     public void printMap() {
         for (Map.Entry<Character, Character> entry : scrambledAlphabet.entrySet()) {
