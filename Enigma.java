@@ -7,14 +7,17 @@ public class Enigma {
     // private Rotor rotor1;
     // int anzahlRotoren = 0;
     Plugboard p;
-    // Rotor r;
+    //Rotor r;
     HashMap<Character, Character> connections;
+    public ArrayList<Rotor> rotorList = new ArrayList<>();
+    public Rotor reflektor;    
     public ArrayList<Rotor> rotorList = new ArrayList<>();
     public Rotor reflektor;    
 
     public static Enigma e;
 
 
+    private Enigma(int anzahlRotoren){
     private Enigma(int anzahlRotoren){
         // this.anzahlRotoren = anzahlRotoren;
         try {
@@ -23,8 +26,12 @@ public class Enigma {
             // this.p = new Plugboard(connections);
             // p.setConnections(letter, letter2);
             
+            // this.p = new Plugboard(connections);
+            // p.setConnections(letter, letter2);
+            
             // Rotoren erzeugen und zur Rotoren-Liste hinzufügen:
             for(int i=0; i<anzahlRotoren; i++){
+                Rotor r = new Rotor(false, false);
                 Rotor r = new Rotor(false, false);
                 this.rotorList.add(r);
             }
@@ -32,7 +39,14 @@ public class Enigma {
             // Reflektor erzeugen:
             if(anzahlRotoren > 1){
                 this.reflektor = new Rotor(false, true);                
+            if(anzahlRotoren > 1){
+                this.reflektor = new Rotor(false, true);                
             }
+            else{
+                this.reflektor = null;
+            }            
+        }
+        catch (Exception e){
             else{
                 this.reflektor = null;
             }            
@@ -43,7 +57,9 @@ public class Enigma {
     }
 
     public static Enigma createEnigma(int anzahlRotoren){
+    public static Enigma createEnigma(int anzahlRotoren){
         if(e == null) {
+            e = new Enigma(anzahlRotoren);
             e = new Enigma(anzahlRotoren);
         }
         return e;
@@ -86,6 +102,8 @@ public class Enigma {
 
         if(this.rotorList.size() == 1) return letterTemp;
 
+        if(this.rotorList.size() == 1) return letterTemp;
+
         // Buchstabe durch Reflektor
         letterTemp = this.reflektor.decryptCharacter(letterTemp, false);
 
@@ -99,7 +117,13 @@ public class Enigma {
     }
 
     public ArrayList<HashMap<Character, Character>> getStartMappings() {
+    public ArrayList<HashMap<Character, Character>> getStartMappings() {
         ArrayList<HashMap<Character, Character>> startMappings = new ArrayList<>();
+        for (Rotor r : this.rotorList) {
+            // Create a deep copy of each startMapping
+            HashMap<Character, Character> startMappingCopy = new HashMap<>(r.getStartMapping());
+            startMappings.add(startMappingCopy);
+        } 
         for (Rotor r : this.rotorList) {
             // Create a deep copy of each startMapping
             HashMap<Character, Character> startMappingCopy = new HashMap<>(r.getStartMapping());
@@ -108,6 +132,7 @@ public class Enigma {
 
         return startMappings;
     }
+    
     
 
     public void setStartMappings(ArrayList<HashMap<Character, Character>> startMappings){

@@ -47,6 +47,7 @@ public class Main {
             System.out.println("");
             Character c = eni.decryptCharacter(character);
             output2 += c;
+            output2 += c;
         }
 
         System.out.println("Decrypted: " + output2);
