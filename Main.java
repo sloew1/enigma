@@ -9,7 +9,7 @@ public class Main {
         
         ArrayList<HashMap<Character, Character>> startMappings = new ArrayList<>();
         startMappings = eni.getStartMappings();      
-        System.out.println("startMapping: ");
+        // System.out.println("startMapping: ");
         /*
         int i = 0;
         for (HashMap<Character, Character> startMapping : startMappings) {
@@ -21,11 +21,12 @@ public class Main {
         }
         */
 
-        String input = "B";
+        String input = "HELLOWORLD";
         String output = "";
         
         // Jedes Zeichen durchlaufen und an die encrypt-Methode übergeben
         for (char character : input.toCharArray()) {
+            System.out.println("");
             Character c = eni.encryptCharacter(character);
             output += c;
         }
@@ -35,11 +36,15 @@ public class Main {
         eni.setStartMappings(startMappings);
 
         // Entschlüsseln:
+        System.out.println("");
+        System.out.println("Entschlüsseln:");
+
         String input2 = output;
         String output2 = "";
         
 
         for (char character : input2.toCharArray()) {
+            System.out.println("");
             Character c = eni.decryptCharacter(character);
             output2 += c;
         }
