@@ -50,14 +50,14 @@ public class Rotor {
         if(!this.isReflektor && turn) turnRotor();
         
         Character mappedLetter = this.scrambledAlphabet.get(letter);
-
+        /*
         if(this.isReflektor){
             System.out.println("Reflektor: " + letter + " -> " + mappedLetter);
         }
         else{
             System.out.println(letter + " -> " + mappedLetter);
         }
-        
+        */
         return mappedLetter;
     }
 
@@ -71,14 +71,14 @@ public class Rotor {
                 mappedLetter = entry.getKey();
             }
         }
-
+        /*
         if(this.isReflektor){
             System.out.println("Reflektor: " + letter + " -> " + mappedLetter);
         }
         else{
             System.out.println(letter + " -> " + mappedLetter);
         }
-
+        */
         return mappedLetter;
     }
 

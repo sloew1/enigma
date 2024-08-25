@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -8,30 +9,42 @@ public class Main {
         Enigma eni = Enigma.createEnigma(2);
         
         ArrayList<HashMap<Character, Character>> startMappings = new ArrayList<>();
-        startMappings = eni.getStartMappings();      
-        // System.out.println("startMapping: ");
-        /*
-        int i = 0;
-        for (HashMap<Character, Character> startMapping : startMappings) {
-            i++;
-            System.out.println("Rotor "+i+": ");
-            for (Map.Entry<Character, Character> entry : startMapping.entrySet()) {
-                System.out.println(entry.getKey()+" -> "+entry.getValue());
-            }
-        }
-        */
+        startMappings = eni.getStartMappings();              
 
-        String input = "HELLOWORLD";
-        String output = "";
-        
-        // Jedes Zeichen durchlaufen und an die encrypt-Methode übergeben
-        for (char character : input.toCharArray()) {
-            System.out.println("");
-            Character c = eni.encryptCharacter(character);
-            output += c;
+        try {
+            int ch;
+            
+            while ((ch = System.in.read()) != -1) {
+                char character = (char) ch;
+                if (character != '\n' && character != '\r') {                    
+                    processCharacter(Character.toUpperCase(character), eni);
+                }
+
+                // Beenden, wenn der Benutzer 'q' eingibt
+                if (character == 'q') {
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        
+    }
+
+    public static void processCharacter(char character, Enigma eni) {
+        // Hier die gewünschte Verarbeitung des Zeichens
+        System.out.println("Verarbeitetes Zeichen: " + character);
+
+        // String input = "HELLOWORLDS";
+        String output = "";
+                
+        Character c = eni.encryptCharacter(character);
+        output += c;
+        
         System.out.println("Encrypted: " + output);
 
+        /*
         // Rotoren auf Anfang zurückstellen:
         eni.setStartMappings(startMappings);
 
@@ -50,6 +63,6 @@ public class Main {
         }
 
         System.out.println("Decrypted: " + output2);
-
-    }
+        */
+    }            
 }
