@@ -53,17 +53,21 @@ public class Enigma {
         Character letterTemp = letterIn;
 
         // Buchstabe durch alle Rotoren schleusen
-        for (Rotor r : this.rotorList) {
-            letterTemp = r.encryptCharacter(letterTemp);
+        int i = 0;
+        boolean turn = false;
+        for (Rotor r : this.rotorList) {                
+            if(i == 0) turn = true;        
+            letterTemp = r.encryptCharacter(letterTemp, turn);
+            i++;
         }        
 
         // Buchstabe durch Reflektor
-        letterTemp = this.reflektor.encryptCharacter(letterTemp);
+        letterTemp = this.reflektor.encryptCharacter(letterTemp, false);
 
         // Buchstabe durch alle Rotoren schleusen in umgekehrter Richtung
-        for (int i=this.rotorList.size()-1; i>=0; i--) {
-            Rotor r = this.rotorList.get(i);
-            letterTemp = r.encryptCharacter(letterTemp);        
+        for (int j=this.rotorList.size()-1; j>=0; j--) {            
+            Rotor r = this.rotorList.get(j);
+            letterTemp = r.encryptCharacter(letterTemp, false);        
         }
 
         return letterTemp;
@@ -72,20 +76,23 @@ public class Enigma {
     public Character decryptCharacter(Character letterIn){
         Character letterTemp = letterIn;
 
-        // Buchstabe durch alle Rotoren schleusen
+        // Buchstabe durch alle Rotoren schleusen:
+        boolean turn = false;
+        int i = 0;
         for (Rotor r : this.rotorList) {
-            letterTemp = r.decryptCharacter(letterTemp);
+            if(i == 0) turn = true;
+            letterTemp = r.decryptCharacter(letterTemp, turn);
         }
 
         if(this.rotorList.size() == 1) return letterTemp;
 
         // Buchstabe durch Reflektor
-        letterTemp = this.reflektor.decryptCharacter(letterTemp);
+        letterTemp = this.reflektor.decryptCharacter(letterTemp, false);
 
         // Buchstabe durch alle Rotoren schleusen in umgekehrter Richtung
-        for (int i=this.rotorList.size()-1; i>=0; i--) {
-            Rotor r = this.rotorList.get(i);
-            letterTemp = r.decryptCharacter(letterTemp);        
+        for (int j=this.rotorList.size()-1; j>=0; j--) {            
+            Rotor r = this.rotorList.get(j);
+            letterTemp = r.decryptCharacter(letterTemp, false);        
         }
 
         return letterTemp;
@@ -106,8 +113,7 @@ public class Enigma {
     public void setStartMappings(ArrayList<HashMap<Character, Character>> startMappings){
         for(int i=0; i<startMappings.size(); i++){            
             Rotor r = this.rotorList.get(i);
-            r.setMapping(startMappings.get(i));
-            i++;
+            r.setMapping(startMappings.get(i));            
         }
     }
 }

@@ -46,15 +46,23 @@ public class Rotor {
         return alphabet;
     }
 
-    public Character encryptCharacter(Character letter){
-        if(!this.isReflektor) turnRotor();
+    public Character encryptCharacter(Character letter, boolean turn){
+        if(!this.isReflektor && turn) turnRotor();
         
         Character mappedLetter = this.scrambledAlphabet.get(letter);
+
+        if(this.isReflektor){
+            System.out.println("Reflektor: " + letter + " -> " + mappedLetter);
+        }
+        else{
+            System.out.println(letter + " -> " + mappedLetter);
+        }
+        
         return mappedLetter;
     }
 
-    public Character decryptCharacter(Character letter){
-        if(!this.isReflektor) turnRotor();
+    public Character decryptCharacter(Character letter, boolean turn){
+        if(!this.isReflektor && turn) turnRotor();
 
         Character mappedLetter = ' ';
         for (Map.Entry<Character, Character> entry : this.scrambledAlphabet.entrySet()) {
@@ -62,6 +70,13 @@ public class Rotor {
             if (entry.getValue().equals(letter)) {
                 mappedLetter = entry.getKey();
             }
+        }
+
+        if(this.isReflektor){
+            System.out.println("Reflektor: " + letter + " -> " + mappedLetter);
+        }
+        else{
+            System.out.println(letter + " -> " + mappedLetter);
         }
 
         return mappedLetter;

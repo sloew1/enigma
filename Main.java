@@ -1,7 +1,6 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -11,7 +10,7 @@ public class Main {
         ArrayList<HashMap<Character, Character>> startMappings = new ArrayList<>();
         startMappings = eni.getStartMappings();      
         System.out.println("startMapping: ");
-
+        /*
         int i = 0;
         for (HashMap<Character, Character> startMapping : startMappings) {
             i++;
@@ -20,8 +19,9 @@ public class Main {
                 System.out.println(entry.getKey()+" -> "+entry.getValue());
             }
         }
+        */
 
-        String input = "HELLOWORLD";
+        String input = "B";
         String output = "";
         
         // Jedes Zeichen durchlaufen und an die encrypt-Methode übergeben
@@ -29,7 +29,7 @@ public class Main {
             Character c = eni.encryptCharacter(character);
             output += c;
         }
-        System.out.println(output);
+        System.out.println("Encrypted: " + output);
 
         // Rotoren auf Anfang zurückstellen:
         eni.setStartMappings(startMappings);
@@ -44,7 +44,7 @@ public class Main {
             output2 += c;
         }
 
-        System.out.println(output2);
+        System.out.println("Decrypted: " + output2);
 
     }
 }
